@@ -39,11 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clause\Clause.cs" />
+    <Compile Include="Clauses.cs" />
+    <Compile Include="Clause\IClause.cs" />
+    <Compile Include="Clause\Condition.cs" />
+    <Compile Include="Clause\FromClause.cs" />
     <Compile Include="Clause\WhereClause.cs" />
     <Compile Include="FluentSQL.cs" />
+    <Compile Include="IQueryPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query\IQuery.cs" />
+    <Compile Include="IQuery.cs" />
     <Compile Include="Query\SelectQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

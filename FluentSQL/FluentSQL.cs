@@ -1,4 +1,5 @@
-﻿using FluentSQL.Query;
+﻿using FluentSQL.Clause;
+using FluentSQL.Query;
 
 namespace FluentSQL
 {

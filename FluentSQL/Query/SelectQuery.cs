@@ -9,42 +9,45 @@ namespace FluentSQL.Query
 {
     public class SelectQuery : IQuery
     {
-        private readonly ICollection<string> _collums = new List<string>();
-        private string _table;
-        private WhereClause _whereClause = new WhereClause("");
+        private readonly ICollection<string> _columns = new List<string>();
+        private readonly ICollection<IClause> _clauses = new List<IClause>(); 
+        private string _tableName;       
 
         public SelectQuery Collum(string name)
         {
-            _collums.Add(name);
+            _columns.Add(name);
             return this;
         }
 
-        public SelectQuery From(string table)
+        public IQuery From(string table)
         {
-            _table = table;
+            _tableName = table;
             return this;
         }
 
-        public WhereClause Where(string operand)
+        public IQuery AddClause(IClause clause)
         {
-            _whereClause = new WhereClause(operand);
-            return _whereClause;
+            _clauses.Add(clause);
+            return this;
         }
 
-        public string ToQuery()
+        public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
             builder.Append("SELECT ");
             string separator = "";
-            foreach (var collum in _collums)
+            foreach (var collum in _columns)
             {
                 builder.Append(separator);
                 builder.Append(collum);
                 separator = ",";
             }
             builder.Append(" FROM ");
-            builder.Append(_table);
-            builder.Append(_whereClause.ToQuery());
+            builder.Append(_tableName);
+            foreach (var clause in _clauses)
+            {
+                builder.Append(clause.ToString());
+            }
             builder.Append(";");
 
             return builder.ToString();

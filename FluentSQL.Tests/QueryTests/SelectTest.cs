@@ -11,7 +11,7 @@ namespace FluentSQL.Tests.QueryTests
             IQuery query = FluentSQL.Select().Collum("test").From("tablename");
 
             string expected = "SELECT test FROM tablename;";
-            string queryText = query.ToQuery();
+            string queryText = query.ToString();
 
             Assert.Equal(expected, queryText);
         }
@@ -22,7 +22,7 @@ namespace FluentSQL.Tests.QueryTests
             IQuery query = FluentSQL.Select().Collum("*").From("tablename");
 
             string expected = "SELECT * FROM tablename;";
-            string queryText = query.ToQuery();
+            string queryText = query.ToString();
 
             Assert.Equal(expected, queryText);
         }
@@ -34,7 +34,7 @@ namespace FluentSQL.Tests.QueryTests
                 .From("tablename");
 
             string expected = "SELECT test,test2,test3 FROM tablename;";
-            string queryText = query.ToQuery();
+            string queryText = query.ToString();
 
             Assert.Equal(expected, queryText);
         }

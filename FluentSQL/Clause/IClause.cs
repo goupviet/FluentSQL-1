@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentSQL.Query
+namespace FluentSQL.Clause
 {
-    public interface IQuery
+    public interface IClause
     {
-        string ToQuery();
+        
     }
 }
