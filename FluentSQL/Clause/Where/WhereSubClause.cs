@@ -96,7 +96,7 @@ namespace FluentSQL.Clause.Where
 
         public WhereClause Like(string operand)
         {
-            _condition.Operator = "LIKE ";
+            _condition.Operator = " LIKE ";
             _condition.SecondOperand = operand;
 
             return _returnClause;

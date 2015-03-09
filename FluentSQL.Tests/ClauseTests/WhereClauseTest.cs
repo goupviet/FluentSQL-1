@@ -100,6 +100,15 @@ namespace FluentSQL.Tests.ClauseTests
         }
 
         [Fact]
+        public void WhereClauseLikeTest()
+        {
+            var clause = Clauses.Where("test").Like("test");
+            var expected = " WHERE test LIKE test";
+
+            Assert.Equal(expected.Trim(), clause.ToString().Trim());
+        }
+
+        [Fact]
         public void WhereClauseAndTest()
         {
             var clause = Clauses.Where("test").Is("test").And("abcd").Is("abcd");
