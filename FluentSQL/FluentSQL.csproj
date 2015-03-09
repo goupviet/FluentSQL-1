@@ -41,9 +41,11 @@
   <ItemGroup>
     <Compile Include="Clauses.cs" />
     <Compile Include="Clause\IClause.cs" />
-    <Compile Include="Clause\Condition.cs" />
-    <Compile Include="Clause\FromClause.cs" />
-    <Compile Include="Clause\WhereClause.cs" />
+    <Compile Include="Clause\Where\Condition.cs" />
+    <Compile Include="Clause\Where\WhereAndClause.cs" />
+    <Compile Include="Clause\Where\WhereClause.cs" />
+    <Compile Include="Clause\Where\WhereOrClause.cs" />
+    <Compile Include="Clause\Where\WhereSubClause.cs" />
     <Compile Include="FluentSQL.cs" />
     <Compile Include="IQueryPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
