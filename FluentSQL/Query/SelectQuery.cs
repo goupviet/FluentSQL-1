@@ -11,8 +11,7 @@ namespace FluentSQL.Query
     {
         private readonly ICollection<string> _columns = new List<string>();
         private readonly ICollection<IClause> _clauses = new List<IClause>(); 
-        private string _tableName;       
-
+        
         public SelectQuery Collum(string name)
         {
             _columns.Add(name);
@@ -22,12 +21,6 @@ namespace FluentSQL.Query
         public SelectQuery DistinctCollum(string name)
         {
             _columns.Add("DISTINCT " + name);
-            return this;
-        }
-
-        public IQuery From(string table)
-        {
-            _tableName = table;
             return this;
         }
 
@@ -48,11 +41,10 @@ namespace FluentSQL.Query
                 builder.Append(collum);
                 separator = ",";
             }
-            builder.Append(" FROM ");
-            builder.Append(_tableName);
+           
             foreach (var clause in _clauses)
             {
-                builder.Append(clause.ToString());
+                builder.Append(" ").Append(clause.ToString());
             }
             builder.Append(";");
 

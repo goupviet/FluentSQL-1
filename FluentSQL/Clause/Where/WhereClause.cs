@@ -32,11 +32,10 @@ namespace FluentSQL.Clause.Where
         public override string ToString()
         {
             var builder = new StringBuilder();
-            builder.Append("WHERE ");
+            builder.Append("WHERE");
             foreach (var s in SubClauses)
             {
-                builder.Append(s.ToString());
-                builder.Append(" ");
+                builder.Append(" ").Append(s.ToString());
             }
 
             return builder.ToString();
