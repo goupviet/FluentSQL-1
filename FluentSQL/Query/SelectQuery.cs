@@ -19,6 +19,12 @@ namespace FluentSQL.Query
             return this;
         }
 
+        public SelectQuery DistinctCollum(string name)
+        {
+            _columns.Add("DISTINCT " + name);
+            return this;
+        }
+
         public IQuery From(string table)
         {
             _tableName = table;
