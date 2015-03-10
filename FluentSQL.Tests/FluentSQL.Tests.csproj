@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ClauseTests\FromClauseTest.cs" />
     <Compile Include="ClauseTests\OrderByClauseTests.cs" />
     <Compile Include="ClauseTests\WhereClauseTest.cs" />
     <Compile Include="QueryTests\SelectTest.cs" />

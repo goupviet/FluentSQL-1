@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clauses.cs" />
+    <Compile Include="Clause\From\FromClause.cs" />
+    <Compile Include="Clause\From\FromJoinClause.cs" />
     <Compile Include="Clause\IClause.cs" />
     <Compile Include="Clause\OrderBy\OrderByClause.cs" />
     <Compile Include="Clause\Where\Condition.cs" />

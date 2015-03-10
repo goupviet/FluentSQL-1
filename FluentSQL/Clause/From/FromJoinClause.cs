@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FluentSQL.Clause.From
+{
+    public class FromJoinClause
+    {
+        private string _tableName;
+        private IClause _returnClause;
+        private string _joinType;
+
+        private string _firstId;
+        private string _secondId;
+
+        public FromJoinClause(string tableName, string joinType, IClause returnClause)
+        {
+            _tableName = tableName;
+            _returnClause = returnClause;
+            _joinType = joinType;
+        }
+
+        public IClause On(string first, string second)
+        {
+            _firstId = first;
+            _secondId = second;
+
+            return _returnClause;
+        }
+
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+
+            builder.Append(" ").Append(_joinType).Append(" ");
+            builder.Append(_tableName).Append(" ON ").Append(_firstId).Append("=").Append(_secondId);
+
+            return builder.ToString();
+        }
+    }
+}
