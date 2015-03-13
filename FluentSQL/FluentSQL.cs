@@ -11,9 +11,19 @@ namespace FluentSQL
             return new SelectQuery();
         }
 
-        public static UpdateQuery Update(string tableName)
+        public static UpdateQuery Update()
         {
-            return new UpdateQuery(tableName);
+            return new UpdateQuery();
+        }
+
+        public static DeleteQuery Delete()
+        {
+            return new DeleteQuery();
+        }
+
+        public static InsertQuery Insert()
+        {
+            return new InsertQuery();
         }
     }
 }

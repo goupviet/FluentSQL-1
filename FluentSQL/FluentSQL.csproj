@@ -53,6 +53,8 @@
     <Compile Include="FluentSQLQuery.cs" />
     <Compile Include="FluentSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\DeleteQuery.cs" />
+    <Compile Include="Query\InsertQuery.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\ITranslatable.cs" />
     <Compile Include="Query\SelectQuery.cs" />

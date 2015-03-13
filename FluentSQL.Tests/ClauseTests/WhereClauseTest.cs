@@ -125,5 +125,14 @@ namespace FluentSQL.Tests.ClauseTests
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
         }
+
+        [Fact]
+        public void WhereClauseWithDapperTest()
+        {
+            var clause = Clauses.Where("test").Is("@test").Or("abcd").Is("@abcd");
+            var expected = " WHERE test=@test OR abcd=@abcd";
+
+            Assert.Equal(expected.Trim(), clause.ToString().Trim());
+        }
     }
 }

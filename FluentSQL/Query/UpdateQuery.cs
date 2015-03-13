@@ -10,13 +10,19 @@ namespace FluentSQL.Query
 {
     public class UpdateQuery : IQuery, ITranslatable
     {
-        private string _tableName;
+        private string _tableName = null;
         private Dictionary<string, string> _updatedValues = new Dictionary<string, string>();
         private WhereClause _where = null;
 
-        internal UpdateQuery(string tableName)
+        internal UpdateQuery()
+        {
+           
+        }
+
+        public UpdateQuery Table(string tableName)
         {
             _tableName = tableName;
+            return this;
         }
 
         public UpdateQuery Set(string column, string value)
@@ -57,8 +63,16 @@ namespace FluentSQL.Query
 
         public FluentSQLQuery Finish()
         {
+            CheckValidity();
             return new FluentSQLQuery(this);
         }
 
+        private void CheckValidity()
+        {
+            if (String.IsNullOrEmpty(_tableName))
+            {
+                throw new InvalidOperationException("Table name not specified in UPDATE query.");
+            }
+        }
     }
 }
