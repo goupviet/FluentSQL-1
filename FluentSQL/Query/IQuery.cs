@@ -4,6 +4,7 @@ namespace FluentSQL.Query
 {
     public interface IQuery
     {
-        IQuery AddClause(IClause clause);
+        FluentSQLQuery Finish();
+        
     }
 }

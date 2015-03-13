@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentSQL.Clause
+namespace FluentSQL.Query
 {
-    public interface IClause : IComparable<IClause>
+    internal interface ITranslatable
     {
-        
+        string Translate();
     }
 }

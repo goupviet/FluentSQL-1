@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FluentSQL.Clause.Where
 {
-    public class WhereOrClause : IClause
+    internal class WhereOrClause : IWhereSubClause
     {
         public override string ToString()
         {

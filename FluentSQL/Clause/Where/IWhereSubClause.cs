@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentSQL.Clause
+namespace FluentSQL.Clause.Where
 {
-    public interface IClause : IComparable<IClause>
+    internal interface IWhereSubClause
     {
-        
     }
 }

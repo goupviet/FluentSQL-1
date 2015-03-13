@@ -1,17 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using FluentSQL.Clause;
+using FluentSQL.Clause.From;
+using FluentSQL.Clause.OrderBy;
+using FluentSQL.Clause.Where;
+using FluentSQL.Query;
 
-namespace FluentSQL.Query
+namespace FluentSQL.Queries
 {
-    public class SelectQuery : IQuery
+    public class SelectQuery : IQuery, ITranslatable
     {
-        private readonly ICollection<string> _columns = new List<string>();
-        private readonly ICollection<IClause> _clauses = new List<IClause>(); 
+        private readonly ICollection<string> _columns = new SortedSet<string>();
+        private FromClause _from = null;
+        private WhereClause _where = null;
+        private OrderByClause _orderBy = null;
         
+        internal SelectQuery()
+        {
+        }
+
         public SelectQuery Collum(string name)
         {
             _columns.Add(name);
@@ -24,13 +31,19 @@ namespace FluentSQL.Query
             return this;
         }
 
-        public IQuery AddClause(IClause clause)
+        public SelectQuery From(FromClause from)
         {
-            _clauses.Add(clause);
+            _from = from;
             return this;
         }
 
-        public override string ToString()
+        public SelectQuery Where(WhereClause where)
+        {
+            _where = where;
+            return this;
+        }
+
+        string ITranslatable.Translate()
         {
             StringBuilder builder = new StringBuilder();
             builder.Append("SELECT ");
@@ -41,14 +54,44 @@ namespace FluentSQL.Query
                 builder.Append(collum);
                 separator = ",";
             }
-           
-            foreach (var clause in _clauses)
+
+            builder.Append(" ").Append(_from);
+            if (_where != null)
             {
-                builder.Append(" ").Append(clause.ToString());
+                builder.Append(" ").Append(_where);
             }
+            if (_orderBy != null)
+            {
+                builder.Append(" ").Append(_orderBy);
+            }
+
             builder.Append(";");
 
             return builder.ToString();
+        }
+
+        public FluentSQLQuery Finish()
+        {
+            if (_from == null)
+            {
+                throw new InvalidOperationException("Must include FROM clause in SELECT statement.");
+            }
+            
+            return new FluentSQLQuery(this);
+        }
+
+        private void CheckValidity()
+        {
+            if (_from == null)
+            {
+                throw new InvalidOperationException("Must include FROM clause in SELECT statement.");
+            }
+        }
+
+        public SelectQuery OrderBy(OrderByClause orderBy)
+        {
+            _orderBy = orderBy;
+            return this;
         }
     }
 }

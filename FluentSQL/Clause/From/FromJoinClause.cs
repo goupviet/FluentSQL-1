@@ -9,20 +9,20 @@ namespace FluentSQL.Clause.From
     public class FromJoinClause
     {
         private string _tableName;
-        private IClause _returnClause;
+        private FromClause _returnClause;
         private string _joinType;
 
         private string _firstId;
         private string _secondId;
 
-        public FromJoinClause(string tableName, string joinType, IClause returnClause)
+        internal FromJoinClause(string tableName, string joinType, FromClause returnClause)
         {
             _tableName = tableName;
             _returnClause = returnClause;
             _joinType = joinType;
         }
 
-        public IClause On(string first, string second)
+        public FromClause On(string first, string second)
         {
             _firstId = first;
             _secondId = second;

@@ -56,6 +56,7 @@
     <Compile Include="ClauseTests\FromClauseTest.cs" />
     <Compile Include="ClauseTests\OrderByClauseTests.cs" />
     <Compile Include="ClauseTests\WhereClauseTest.cs" />
+    <Compile Include="QueryTests\UpdateTest.cs" />
     <Compile Include="QueryTests\SelectTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

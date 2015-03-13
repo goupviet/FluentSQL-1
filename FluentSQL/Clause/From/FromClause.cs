@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using FluentSQL.Clause.Where;
 
 namespace FluentSQL.Clause.From
 {
@@ -11,7 +13,7 @@ namespace FluentSQL.Clause.From
         private string _source;
         private FromJoinClause _joinClause = null;
 
-        public FromClause(string source)
+        internal FromClause(string source)
         {
             _source = source;
         }
@@ -38,6 +40,14 @@ namespace FluentSQL.Clause.From
         {
             _joinClause = new FromJoinClause(tableName, "FULL OUTER JOIN", this);
             return _joinClause;
+        }
+
+        public int CompareTo(IClause other)
+        {
+            int clauseNum = 0; // FROM is first
+            int otherNum = other is FromClause ? 0 : other is WhereClause ? 1 : 2;
+
+            return clauseNum.CompareTo(otherNum);
         }
 
         public override string ToString()

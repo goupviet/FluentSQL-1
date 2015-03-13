@@ -1,4 +1,5 @@
-﻿using FluentSQL.Query;
+﻿using System;
+using FluentSQL.Query;
 using Xunit;
 
 namespace FluentSQL.Tests.QueryTests
@@ -8,51 +9,28 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestSelectCollum()
         {
-            IQuery query = FluentSQL.Select().Collum("test");
-
-            string expected = "SELECT test;";
-            string queryText = query.ToString();
-
-            Assert.Equal(expected, queryText);
-        }
-
-        [Fact]
-        public void TestSelectAll()
-        {
-            IQuery query = FluentSQL.Select().Collum("*");
-
-            string expected = "SELECT *;";
-            string queryText = query.ToString();
-
-            Assert.Equal(expected, queryText);
-        }
-
-        [Fact]
-        public void TestMultipleCollumsFromTable()
-        {
-            IQuery query = FluentSQL.Select().Collum("test").Collum("test2").Collum("test3");
-
-            string expected = "SELECT test,test2,test3;";
-            string queryText = query.ToString();
-
-            Assert.Equal(expected, queryText);
+            Assert.Throws<InvalidOperationException>(() => FluentSQL.Select().Collum("test").Finish());
         }
 
         [Fact]
         public void TestDistinctValue()
         {
-            var query = FluentSQL.Select().DistinctCollum("abcd");
-            string expect = "SELECT DISTINCT abcd;";
+            var query = FluentSQL.Select().
+                DistinctCollum("abcd")
+                .From(Clauses.From("table"))
+                .Finish();
 
-            Assert.Equal(expect, query.ToString());
+            string expected = "SELECT DISTINCT abcd FROM table;";
+
+            Assert.Equal(expected, query.ToString());
         }
 
         [Fact]
         public void TestSelectWithFromClause()
         {
-            var query = FluentSQL.Select().Collum("abcd").AddClause(
-                Clauses.From("table")
-                );
+            var query = FluentSQL.Select().Collum("abcd")
+                .From(Clauses.From("table"))
+                .Finish();
 
             string expected = "SELECT abcd FROM table;";
 
@@ -62,22 +40,22 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestSelectWithWhereClause()
         {
-            var query = FluentSQL.Select().Collum("abcd").AddClause(
-                Clauses.Where("id").Is("5")
-                );
+            var query = FluentSQL.Select().Collum("abcd")
+                .From(Clauses.From("table"))
+                .Where(Clauses.Where("id").Is("5"))
+                .Finish();
 
-            string expected = "SELECT abcd WHERE id=5;";
+            string expected = "SELECT abcd FROM table WHERE id=5;";
             Assert.Equal(expected, query.ToString());
         }
 
         [Fact]
         public void TestSelectWithFromAndWhereClauses()
         {
-            var query = FluentSQL.Select().Collum("abcd").AddClause(
-                Clauses.From("table").InnerJoin("other").On("id1", "id2")
-                ).AddClause(
-                    Clauses.Where("id3").IsNot("id4")
-                );
+            var query = FluentSQL.Select().Collum("abcd")
+                .From(Clauses.From("table").InnerJoin("other").On("id1", "id2"))
+                .Where(Clauses.Where("id3").IsNot("id4"))
+                .Finish();
 
             string expected = "SELECT abcd FROM table INNER JOIN other ON id1=id2 WHERE id3<>id4;";
 
@@ -87,15 +65,43 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestSelectWithFromWhereAndOrderByClauses()
         {
-            var query = FluentSQL.Select().Collum("abcd").AddClause(
-                Clauses.From("table").InnerJoin("other").On("id1", "id2")
-                ).AddClause(
-                    Clauses.Where("id3").IsNot("id4")
-                ).AddClause(
-                    Clauses.OrderBy("param")
-                );
+            var query = FluentSQL.Select().Collum("abcd")
+                .From(Clauses.From("table").InnerJoin("other").On("id1", "id2"))
+                .Where(Clauses.Where("id3").IsNot("id4"))
+                .OrderBy(Clauses.OrderBy("param"))
+                .Finish();
 
             string expected = "SELECT abcd FROM table INNER JOIN other ON id1=id2 WHERE id3<>id4 ORDER BY param;";
+
+            Assert.Equal(expected, query.ToString());
+        }
+
+        [Fact]
+        public void TestSelectWithUnorderedClauseInsert()
+        {
+            var query = FluentSQL.Select().Collum("abcd")
+                .OrderBy(Clauses.OrderBy("param"))
+                .From(Clauses.From("table").InnerJoin("other").On("id1", "id2"))
+                .Where(Clauses.Where("id3").IsNot("id4"))
+                .Finish();
+
+            string expected = "SELECT abcd FROM table INNER JOIN other ON id1=id2 WHERE id3<>id4 ORDER BY param;";
+
+            Assert.Equal(expected, query.ToString());
+        }
+
+        [Fact]
+        public void TestSettingClausesMultipleTimes()
+        {
+            var query =
+                FluentSQL.Select()
+                    .Collum("abcd")
+                    .Collum("abcd")
+                    .From(Clauses.From("table"))
+                    .From(Clauses.From("table"))
+                    .Finish();
+
+            string expected = "SELECT abcd FROM table;";
 
             Assert.Equal(expected, query.ToString());
         }
