@@ -19,24 +19,44 @@ namespace FluentSQL.Queries
         {
         }
 
-        public SelectQuery Collum(string name)
+        /// <summary>
+        /// Adds column to SELECT query.
+        /// </summary>
+        /// <param name="name">Column name.</param>
+        /// <returns></returns>
+        public SelectQuery Column(string name)
         {
             _columns.Add(name);
             return this;
         }
 
-        public SelectQuery DistinctCollum(string name)
+        /// <summary>
+        /// Adds distinct column to SELECT query.
+        /// </summary>
+        /// <param name="name">Column name.</param>
+        /// <returns></returns>
+        public SelectQuery DistinctColumn(string name)
         {
             _columns.Add("DISTINCT " + name);
             return this;
         }
 
+        /// <summary>
+        /// Adds from clause to SELECT query.
+        /// </summary>
+        /// <param name="from"></param>
+        /// <returns></returns>
         public SelectQuery From(FromClause from)
         {
             _from = from;
             return this;
         }
 
+        /// <summary>
+        /// Adds where clause to SELECT query.
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public SelectQuery Where(WhereClause where)
         {
             _where = where;

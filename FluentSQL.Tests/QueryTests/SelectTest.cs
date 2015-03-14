@@ -9,14 +9,14 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestSelectCollum()
         {
-            Assert.Throws<InvalidOperationException>(() => Query.Select().Collum("test").Finish());
+            Assert.Throws<InvalidOperationException>(() => Query.Select().Column("test").Finish());
         }
 
         [Fact]
         public void TestDistinctValue()
         {
-            var query = Query.Select().
-                DistinctCollum("abcd")
+            var query = Query.Select()
+                .DistinctColumn("abcd")
                 .From(Clause.From("table"))
                 .Finish();
 
@@ -28,7 +28,7 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestSelectWithFromClause()
         {
-            var query = Query.Select().Collum("abcd")
+            var query = Query.Select().Column("abcd")
                 .From(Clause.From("table"))
                 .Finish();
 
@@ -40,7 +40,7 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestSelectWithWhereClause()
         {
-            var query = Query.Select().Collum("abcd")
+            var query = Query.Select().Column("abcd")
                 .From(Clause.From("table"))
                 .Where(Clause.Where("id").Is("5"))
                 .Finish();
@@ -52,7 +52,7 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestSelectWithFromAndWhereClauses()
         {
-            var query = Query.Select().Collum("abcd")
+            var query = Query.Select().Column("abcd")
                 .From(Clause.From("table").InnerJoin("other").On("id1", "id2"))
                 .Where(Clause.Where("id3").IsNot("id4"))
                 .Finish();
@@ -65,7 +65,7 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestSelectWithFromWhereAndOrderByClauses()
         {
-            var query = Query.Select().Collum("abcd")
+            var query = Query.Select().Column("abcd")
                 .From(Clause.From("table").InnerJoin("other").On("id1", "id2"))
                 .Where(Clause.Where("id3").IsNot("id4"))
                 .OrderBy(Clause.OrderBy("param"))
@@ -79,7 +79,7 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestSelectWithUnorderedClauseInsert()
         {
-            var query = Query.Select().Collum("abcd")
+            var query = Query.Select().Column("abcd")
                 .OrderBy(Clause.OrderBy("param"))
                 .From(Clause.From("table").InnerJoin("other").On("id1", "id2"))
                 .Where(Clause.Where("id3").IsNot("id4"))
@@ -94,8 +94,8 @@ namespace FluentSQL.Tests.QueryTests
         public void TestSettingClausesMultipleTimes()
         {
             var query = Query.Select()
-                    .Collum("abcd")
-                    .Collum("abcd")
+                    .Column("abcd")
+                    .Column("abcd")
                     .From(Clause.From("table"))
                     .From(Clause.From("table"))
                     .Finish();
@@ -103,6 +103,7 @@ namespace FluentSQL.Tests.QueryTests
             string expected = "SELECT abcd FROM table;";
 
             Assert.Equal(expected, query.ToString());
+            
         }
     }
 }

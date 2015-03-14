@@ -18,12 +18,23 @@ namespace FluentSQL.Queries
            
         }
 
+        /// <summary>
+        /// Sets table which should be updated.
+        /// </summary>
+        /// <param name="tableName">Table name.</param>
+        /// <returns></returns>
         public UpdateQuery Table(string tableName)
         {
             _tableName = tableName;
             return this;
         }
 
+        /// <summary>
+        /// Set column name and its value.
+        /// </summary>
+        /// <param name="column">Column name.</param>
+        /// <param name="value">New value.</param>
+        /// <returns></returns>
         public UpdateQuery Set(string column, string value)
         {
             _updatedValues.Add(column, value);
@@ -31,6 +42,11 @@ namespace FluentSQL.Queries
             return this;
         }
 
+        /// <summary>
+        /// Adds where clause to UPDATE query.
+        /// </summary>
+        /// <param name="clause"></param>
+        /// <returns></returns>
         public UpdateQuery Where(WhereClause clause)
         {
             _where = clause;

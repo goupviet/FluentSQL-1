@@ -16,12 +16,23 @@ namespace FluentSQL.Queries
             _values = new Dictionary<string, string>();
         }
 
+        /// <summary>
+        /// Sets table to insert to.
+        /// </summary>
+        /// <param name="tableName">Table name.</param>
+        /// <returns></returns>
         public InsertQuery Table(string tableName)
         {
             _table = tableName;
             return this;
         }
 
+        /// <summary>
+        /// Sets column name and its value.
+        /// </summary>
+        /// <param name="columnName">Column name.</param>
+        /// <param name="value">Inserted value.</param>
+        /// <returns></returns>
         public InsertQuery Value(string columnName, string value)
         {
             _values.Add(columnName, value);

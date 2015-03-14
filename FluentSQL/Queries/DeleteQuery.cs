@@ -13,12 +13,22 @@ namespace FluentSQL.Queries
         private FromClause _from;
         private WhereClause _where;
 
+        /// <summary>
+        /// Adds FROM clause.
+        /// </summary>
+        /// <param name="from"></param>
+        /// <returns></returns>
         public DeleteQuery From(FromClause from)
         {
             _from = from;
             return this;
         }
 
+        /// <summary>
+        /// Adds WHERE clause.
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public DeleteQuery Where(WhereClause where)
         {
             _where = where;
