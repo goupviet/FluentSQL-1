@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using FluentSQL.Clause.From;
-using FluentSQL.Clause.OrderBy;
-using FluentSQL.Clause.Where;
-using FluentSQL.Query;
+using FluentSQL.Clauses.From;
+using FluentSQL.Clauses.OrderBy;
+using FluentSQL.Clauses.Where;
+
 
 namespace FluentSQL.Queries
 {

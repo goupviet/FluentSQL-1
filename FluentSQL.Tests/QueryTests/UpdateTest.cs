@@ -12,7 +12,7 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestUpdateWithoutWhere()
         {
-            var query = FluentSQL.Update().Table("abcd")
+            var query = Query.Update().Table("abcd")
                 .Set("Name", "peter")
                 .Finish();
 
@@ -24,7 +24,7 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestUpdateWithMultipleSets()
         {
-            var query = FluentSQL.Update().Table("abcd")
+            var query = Query.Update().Table("abcd")
                 .Set("Name", "peter")
                 .Set("Age", "30")
                 .Finish();
@@ -37,9 +37,9 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestUpdateWithWhere()
         {
-            var query = FluentSQL.Update().Table("abcd")
+            var query = Query.Update().Table("abcd")
                 .Set("Name", "peter")
-                .Where(Clauses.Where("Age").Is("30"))
+                .Where(Clause.Where("Age").Is("30"))
                 .Finish();
 
             var expected = "UPDATE abcd SET Name=peter WHERE Age=30;";
@@ -50,10 +50,10 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestUpdateMultipleSetsWithWhere()
         {
-            var query = FluentSQL.Update().Table("abcd")
+            var query = Query.Update().Table("abcd")
                 .Set("Name", "peter")
                 .Set("Age", "30")
-                .Where(Clauses.Where("Age").LessThan("25"))
+                .Where(Clause.Where("Age").LessThan("25"))
                 .Finish();
 
             var expected = "UPDATE abcd SET Name=peter,Age=30 WHERE Age<25;";
@@ -64,16 +64,16 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestUpdateWithoutTable()
         {
-            Assert.Throws<InvalidOperationException>(() => FluentSQL.Update().Finish());
+            Assert.Throws<InvalidOperationException>(() => Query.Update().Finish());
         }
 
         [Fact]
         public void TestUpdateWithDapper()
         {
-            var query = FluentSQL.Update().Table("abcd")
+            var query = Query.Update().Table("abcd")
                 .Set("Name", "@name")
                 .Set("Age", "@age")
-                .Where(Clauses.Where("Age").LessThan("25"))
+                .Where(Clause.Where("Age").LessThan("25"))
                 .Finish();
 
             var expected = "UPDATE abcd SET Name=@name,Age=@age WHERE Age<25;";

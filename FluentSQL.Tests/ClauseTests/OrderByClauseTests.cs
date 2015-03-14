@@ -12,7 +12,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void SingleParamOrderByTest()
         {
-            var clause = Clauses.OrderBy("abcd");
+            var clause = Clause.OrderBy("abcd");
             var expected = "ORDER BY abcd";
 
             Assert.Equal(clause.ToString(), expected);
@@ -21,7 +21,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void MultipleParamOrderByTest()
         {
-            var clause = Clauses.OrderBy("abcd","test","qwer");
+            var clause = Clause.OrderBy("abcd", "test", "qwer");
             var expected = "ORDER BY abcd,test,qwer";
 
             Assert.Equal(expected, clause.ToString());    

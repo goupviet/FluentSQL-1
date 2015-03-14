@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace FluentSQL.Clause.Where
+namespace FluentSQL.Clauses.Where
 {
     internal class Condition
     {

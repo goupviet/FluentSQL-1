@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentSQL.Query
+namespace FluentSQL.Queries
 {
     public class InsertQuery : IQuery, ITranslatable
     {

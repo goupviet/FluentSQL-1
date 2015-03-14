@@ -1,10 +1,8 @@
-﻿
-using FluentSQL.Queries;
-using FluentSQL.Query;
+﻿using FluentSQL.Queries;
 
 namespace FluentSQL
 {
-    public static class FluentSQL
+    public static class Query
     {
         public static SelectQuery Select()
         {

@@ -1,6 +1,6 @@
-﻿using FluentSQL.Clause;
+﻿
 
-namespace FluentSQL.Query
+namespace FluentSQL.Queries
 {
     public interface IQuery
     {

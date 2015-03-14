@@ -12,7 +12,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseIsOperatorTest()
         {
-            var clause = Clauses.Where("test").Is("test");
+            var clause = Clause.Where("test").Is("test");
             var expected = " WHERE test=test ";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -21,7 +21,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseIsNotOperatorTest()
         {
-            var clause = Clauses.Where("test").IsNot("test");
+            var clause = Clause.Where("test").IsNot("test");
             var expected = " WHERE test<>test ";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -30,7 +30,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseGreaterThanOperatorTest()
         {
-            var clause = Clauses.Where("test").GreaterThan("test");
+            var clause = Clause.Where("test").GreaterThan("test");
             var expected = " WHERE test>test ";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -39,7 +39,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseLessThanOperatorTest()
         {
-            var clause = Clauses.Where("test").LessThan("test");
+            var clause = Clause.Where("test").LessThan("test");
             var expected = " WHERE test<test ";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -48,7 +48,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseLessEqualOperatorTest()
         {
-            var clause = Clauses.Where("test").LessEqualThan("test");
+            var clause = Clause.Where("test").LessEqualThan("test");
             var expected = " WHERE test<=test ";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -57,7 +57,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseGreaterEqualOperatorTest()
         {
-            var clause = Clauses.Where("test").GreaterEqualThan("test");
+            var clause = Clause.Where("test").GreaterEqualThan("test");
             var expected = " WHERE test>=test ";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -66,7 +66,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseIsNullOperatorTest()
         {
-            var clause = Clauses.Where("test").IsNull();
+            var clause = Clause.Where("test").IsNull();
             var expected = " WHERE test IS NULL ";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -75,7 +75,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseIsNotNullOperatorTest()
         {
-            var clause = Clauses.Where("test").IsNotNull();
+            var clause = Clause.Where("test").IsNotNull();
             var expected = " WHERE test IS NOT NULL ";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -84,7 +84,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseInOperatorTest()
         {
-            var clause = Clauses.Where("test").In("one", "two", "three");
+            var clause = Clause.Where("test").In("one", "two", "three");
             var expected = " WHERE test IN (one,two,three)";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -93,7 +93,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseBetweenOperatorTest()
         {
-            var clause = Clauses.Where("test").Between("first", "second");
+            var clause = Clause.Where("test").Between("first", "second");
             var expected = " WHERE test BETWEEN first AND second ";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -102,7 +102,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseLikeTest()
         {
-            var clause = Clauses.Where("test").Like("test");
+            var clause = Clause.Where("test").Like("test");
             var expected = " WHERE test LIKE test";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -111,7 +111,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseAndTest()
         {
-            var clause = Clauses.Where("test").Is("test").And("abcd").Is("abcd");
+            var clause = Clause.Where("test").Is("test").And("abcd").Is("abcd");
             var expected = " WHERE test=test AND abcd=abcd";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -120,7 +120,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseOrTest()
         {
-            var clause = Clauses.Where("test").Is("test").Or("abcd").Is("abcd");
+            var clause = Clause.Where("test").Is("test").Or("abcd").Is("abcd");
             var expected = " WHERE test=test OR abcd=abcd";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());
@@ -129,7 +129,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void WhereClauseWithDapperTest()
         {
-            var clause = Clauses.Where("test").Is("@test").Or("abcd").Is("@abcd");
+            var clause = Clause.Where("test").Is("@test").Or("abcd").Is("@abcd");
             var expected = " WHERE test=@test OR abcd=@abcd";
 
             Assert.Equal(expected.Trim(), clause.ToString().Trim());

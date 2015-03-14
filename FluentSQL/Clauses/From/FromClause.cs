@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using FluentSQL.Clause.Where;
+﻿using System.Text;
+using FluentSQL.Clauses.Where;
 
-namespace FluentSQL.Clause.From
+namespace FluentSQL.Clauses.From
 {
     public class FromClause : IClause
     {

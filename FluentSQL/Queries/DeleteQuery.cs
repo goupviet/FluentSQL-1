@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using FluentSQL.Clause.From;
-using FluentSQL.Clause.Where;
 
-namespace FluentSQL.Query
+using FluentSQL.Clauses.From;
+using FluentSQL.Clauses.Where;
+
+namespace FluentSQL.Queries
 {
     public class DeleteQuery : IQuery, ITranslatable
     {

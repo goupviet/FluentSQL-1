@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using FluentSQL.Clause;
-using FluentSQL.Clause.Where;
+using FluentSQL.Clauses.Where;
 
-namespace FluentSQL.Query
+
+namespace FluentSQL.Queries
 {
     public class UpdateQuery : IQuery, ITranslatable
     {

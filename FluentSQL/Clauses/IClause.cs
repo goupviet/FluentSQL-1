@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentSQL.Clause
+namespace FluentSQL.Clauses
 {
-    public interface IClause : IComparable<IClause>
+    public interface IClause
     {
         
     }

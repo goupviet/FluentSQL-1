@@ -12,7 +12,7 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestInsertSingleValue()
         {
-            var query = FluentSQL.Insert().Table("abcd").Value("xyz", "xyz").Finish();
+            var query = Query.Insert().Table("abcd").Value("xyz", "xyz").Finish();
             var expected = "INSERT INTO abcd (xyz) VALUES ('xyz');";
 
             Assert.Equal(expected, query.ToString());
@@ -21,7 +21,7 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestInsertMultipleValues()
         {
-            var query = FluentSQL.Insert().Table("abcd")
+            var query = Query.Insert().Table("abcd")
                 .Value("xyz", "xyz")
                 .Value("qwerty", "something")
                 .Value("zxc", "asdf")
@@ -36,7 +36,7 @@ namespace FluentSQL.Tests.QueryTests
         [Fact]
         public void TestInsertNoTable()
         {
-            Assert.Throws<InvalidOperationException>(() => FluentSQL.Insert().Finish());
+            Assert.Throws<InvalidOperationException>(() => Query.Insert().Finish());
         }
     }
 }

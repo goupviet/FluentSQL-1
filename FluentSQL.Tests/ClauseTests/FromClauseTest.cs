@@ -12,7 +12,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void FromTableTest()
         {
-            var clause = Clauses.From("test");
+            var clause = Clause.From("test");
             var expected = "FROM test";
 
             Assert.Equal(expected, clause.ToString());
@@ -21,7 +21,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void FromTableInnerJoinTest()
         {
-            var clause = Clauses.From("test").InnerJoin("other").On("id1", "id2");
+            var clause = Clause.From("test").InnerJoin("other").On("id1", "id2");
             var expected = "FROM test INNER JOIN other ON id1=id2";
 
             Assert.Equal(expected, clause.ToString());
@@ -30,7 +30,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void FromTableFullOuterJoinTest()
         {
-            var clause = Clauses.From("test").FullOuterJoin("other").On("id1", "id2");
+            var clause = Clause.From("test").FullOuterJoin("other").On("id1", "id2");
             var expected = "FROM test FULL OUTER JOIN other ON id1=id2";
 
             Assert.Equal(expected, clause.ToString());
@@ -39,7 +39,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void FromTableLeftJoinTest()
         {
-            var clause = Clauses.From("test").LeftJoin("other").On("id1", "id2");
+            var clause = Clause.From("test").LeftJoin("other").On("id1", "id2");
             var expected = "FROM test LEFT JOIN other ON id1=id2";
 
             Assert.Equal(expected, clause.ToString());
@@ -47,7 +47,7 @@ namespace FluentSQL.Tests.ClauseTests
         [Fact]
         public void FromTableRightJoinTest()
         {
-            var clause = Clauses.From("test").RightJoin("other").On("id1", "id2");
+            var clause = Clause.From("test").RightJoin("other").On("id1", "id2");
             var expected = "FROM test RIGHT JOIN other ON id1=id2";
 
             Assert.Equal(expected, clause.ToString());

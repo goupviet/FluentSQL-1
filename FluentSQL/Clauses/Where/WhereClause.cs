@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using FluentSQL.Clause.From;
+using FluentSQL.Clauses.From;
 
-namespace FluentSQL.Clause.Where
+namespace FluentSQL.Clauses.Where
 {
     public class WhereClause : IClause
     {
