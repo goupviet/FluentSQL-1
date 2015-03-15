@@ -15,6 +15,11 @@ namespace FluentSQL.Clauses.Where
             _returnClause.SubClauses.Add(this);
         }
 
+        /// <summary>
+        /// Equals relation.
+        /// </summary>
+        /// <param name="operand">Second operand.</param>
+        /// <returns></returns>
         public WhereClause Is(string operand)
         {
             _condition.Operator = "=";
@@ -23,6 +28,11 @@ namespace FluentSQL.Clauses.Where
             return _returnClause;
         }
 
+        /// <summary>
+        /// Not equals relation.
+        /// </summary>
+        /// <param name="operand">Second operand.</param>
+        /// <returns></returns>
         public WhereClause IsNot(string operand)
         {
             _condition.Operator = "<>";
@@ -31,6 +41,11 @@ namespace FluentSQL.Clauses.Where
             return _returnClause;
         }
 
+        /// <summary>
+        /// Greater than relation.
+        /// </summary>
+        /// <param name="operand">Second operand.</param>
+        /// <returns></returns>
         public WhereClause GreaterThan(string operand)
         {
             _condition.Operator = ">";
@@ -39,6 +54,11 @@ namespace FluentSQL.Clauses.Where
             return _returnClause;
         }
 
+        /// <summary>
+        /// Greater equal relation.
+        /// </summary>
+        /// <param name="operand">Second operand.</param>
+        /// <returns></returns>
         public WhereClause GreaterEqualThan(string operand)
         {
             _condition.Operator = ">=";
@@ -47,6 +67,11 @@ namespace FluentSQL.Clauses.Where
             return _returnClause;
         }
 
+        /// <summary>
+        /// Less than relation.
+        /// </summary>
+        /// <param name="operand">Second operand.</param>
+        /// <returns></returns>
         public WhereClause LessThan(string operand)
         {
             _condition.Operator = "<";
@@ -55,6 +80,11 @@ namespace FluentSQL.Clauses.Where
             return _returnClause;
         }
 
+        /// <summary>
+        /// Less equal relation.
+        /// </summary>
+        /// <param name="operand">Second operand.</param>
+        /// <returns></returns>
         public WhereClause LessEqualThan(string operand)
         {
             _condition.Operator = "<=";
@@ -63,6 +93,12 @@ namespace FluentSQL.Clauses.Where
             return _returnClause;
         }
 
+        /// <summary>
+        /// Between relation.
+        /// </summary>
+        /// <param name="first">FIrst bound.</param>
+        /// <param name="second">Second bound.</param>
+        /// <returns></returns>
         public WhereClause Between(string first, string second)
         {
             _condition.Operator = " BETWEEN ";
@@ -71,6 +107,11 @@ namespace FluentSQL.Clauses.Where
             return _returnClause;
         }
 
+        /// <summary>
+        /// In relation.
+        /// </summary>
+        /// <param name="values">Values.</param>
+        /// <returns></returns>
         public WhereClause In(params string[] values)
         {
             _condition.Operator = " IN ";
@@ -90,6 +131,11 @@ namespace FluentSQL.Clauses.Where
             return _returnClause;
         }
 
+        /// <summary>
+        /// Like relation.
+        /// </summary>
+        /// <param name="operand">Second operand.</param>
+        /// <returns></returns>
         public WhereClause Like(string operand)
         {
             _condition.Operator = " LIKE ";
@@ -98,6 +144,10 @@ namespace FluentSQL.Clauses.Where
             return _returnClause;
         }
 
+        /// <summary>
+        /// IsNotNull constraint.
+        /// </summary>
+        /// <returns></returns>
         public WhereClause IsNotNull()
         {
             _condition.Operator = " IS NOT NULL";
@@ -106,6 +156,10 @@ namespace FluentSQL.Clauses.Where
             return _returnClause;
         }
 
+        /// <summary>
+        /// IsNull constraint.
+        /// </summary>
+        /// <returns></returns>
         public WhereClause IsNull()
         {
             _condition.Operator = " IS NULL";

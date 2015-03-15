@@ -21,7 +21,13 @@ namespace FluentSQL.Clauses.From
             _returnClause = returnClause;
             _joinType = joinType;
         }
-
+        
+        /// <summary>
+        /// Specifies indexes on which tables should join.
+        /// </summary>
+        /// <param name="first">First index.</param>
+        /// <param name="second">Second Index</param>
+        /// <returns></returns>
         public FromClause On(string first, string second)
         {
             _firstId = first;

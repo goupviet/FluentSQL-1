@@ -13,36 +13,48 @@ namespace FluentSQL.Clauses.From
             _source = source;
         }
 
+        /// <summary>
+        /// Does a INNER JOIN on other table.
+        /// </summary>
+        /// <param name="tableName">Table name.</param>
+        /// <returns></returns>
         public FromJoinClause InnerJoin(string tableName)
         {
             _joinClause = new FromJoinClause(tableName, "INNER JOIN", this);
             return _joinClause;
         }
 
+        /// <summary>
+        /// Does a LEFT JOIN on other table.
+        /// </summary>
+        /// <param name="tableName">Table name.</param>
+        /// <returns></returns>
         public FromJoinClause LeftJoin(string tableName)
         {
             _joinClause = new FromJoinClause(tableName, "LEFT JOIN", this);
             return _joinClause;
         }
-
+        
+        /// <summary>
+        /// Does a RIGHT JOIN on other table.
+        /// </summary>
+        /// <param name="tableName">Table name.</param>
+        /// <returns></returns>
         public FromJoinClause RightJoin(string tableName)
         {
             _joinClause = new FromJoinClause(tableName, "RIGHT JOIN", this);
             return _joinClause;
         }
 
+        /// <summary>
+        /// Does a FULL OUTER JOIN on other table.
+        /// </summary>
+        /// <param name="tableName">Table name.</param>
+        /// <returns></returns>
         public FromJoinClause FullOuterJoin(string tableName)
         {
             _joinClause = new FromJoinClause(tableName, "FULL OUTER JOIN", this);
             return _joinClause;
-        }
-
-        public int CompareTo(IClause other)
-        {
-            int clauseNum = 0; // FROM is first
-            int otherNum = other is FromClause ? 0 : other is WhereClause ? 1 : 2;
-
-            return clauseNum.CompareTo(otherNum);
         }
 
         public override string ToString()
